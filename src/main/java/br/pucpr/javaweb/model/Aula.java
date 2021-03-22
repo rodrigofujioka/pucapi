@@ -13,6 +13,10 @@ public class Aula {
 
     private String descricao;
 
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id")
+    private Disciplina disciplina;
+
     public long getId() {
         return id;
     }

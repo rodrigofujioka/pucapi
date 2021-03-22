@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface AulaRepository extends JpaRepository<Aula, Long> {
 
-    @NamedNativeQu
-    List<Aula> findAulaByAssunto(@Param("assunto") String assunto);
+
+    List<Aula> findAulaByAssunto(String assunto);
 
 }
