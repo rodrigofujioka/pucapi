@@ -11,6 +11,7 @@ public class Aula {
     @Column(length = 100)
     private String assunto;
 
+
     private String descricao;
 
     @Transient

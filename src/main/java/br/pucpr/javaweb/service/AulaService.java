@@ -1,6 +1,8 @@
 package br.pucpr.javaweb.service;
 
+import br.pucpr.javaweb.exceptions.EntityAulaException;
 import br.pucpr.javaweb.model.Aula;
+import br.pucpr.javaweb.model.dto.AulaDto;
 import br.pucpr.javaweb.repository.AulaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +16,22 @@ public class AulaService {
     @Autowired
     private AulaRepository aulaRepository;
 
-    public Aula salvar(Aula aula){
+    public AulaDto salvar(Aula aula){
 
         if(Objects.nonNull(aula.getId())){
-            throw new RuntimeException("Erro");
+            throw new EntityAulaException("Aula", "Não foi possível salvar aula", null);
         }
-        return aulaRepository.save(aula);
+
+        return  new AulaDto(aulaRepository.save(aula));
     }
 
 
-    public Aula consultarAula(Long id){
-        return aulaRepository.findById(id).get();
+    public AulaDto consultarAula(Long id){
+        AulaDto aulaDto = new AulaDto(
+                            aulaRepository.findById(id).orElseThrow(
+                                    () -> new EntityAulaException("Aula", "Não existe aula para esse ID", id.toString())));
+
+        return aulaDto;
     }
 
     public List<Aula> listar(){

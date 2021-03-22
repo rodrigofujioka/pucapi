@@ -16,7 +16,6 @@ public interface AulaRepository extends JpaRepository<Aula, Long> {
     @Query("select a from Aula a where a.assunto=:assunto")
     List<Aula> listarAulas(@Param("assunto") String assunto);
 
-    List<Aula> listarAulasNativa();
     List<Aula> findAulaByAssunto(String assunto);
     List<Aula> findAulaByAssuntoOrderByIdDesc(String assunto);
 
