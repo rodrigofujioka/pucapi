@@ -15,6 +15,9 @@ public class Disciplina implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplina")
     private List<Aula> listaAulas;
 
+    @OneToOne
+    private Professor professor;
+
     public Long getId() {
         return id;
     }

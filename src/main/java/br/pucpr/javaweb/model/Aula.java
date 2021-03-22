@@ -13,9 +13,20 @@ public class Aula {
 
     private String descricao;
 
+    @Transient
+    private String assuntoDescricao;
+
+
+
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
+
+
+    public String getAssuntoDescricao(){
+        this.assuntoDescricao = this.assunto + " - " + this.descricao;
+        return this.assuntoDescricao;
+    }
 
     public long getId() {
         return id;
